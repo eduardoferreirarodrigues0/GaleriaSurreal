@@ -20,12 +20,15 @@ const voltarImagem = function(){
 }
 
 const selecionarImagem = function(){
-    imagemPrincipal.src = todasImagens[idImagemAtiva].src
+    imagemPrincipal.src = todasImagens[idImagemAtiva].src;
+    const altText = todasImagens[idImagemAtiva].alt;
+    textoAlternativo.textContent = altText;
     todasImagens.forEach(function(imagem){
-        imagem.classList = "";
-    })
-    todasImagens[idImagemAtiva].classList.add("")
+        imagem.classList.remove("ativo");
+    });
+    todasImagens[idImagemAtiva].classList.add("ativo");
 }
+
 
 btnProximo.addEventListener('click',proximoImagem)
 btnAnterior.addEventListener('click',voltarImagem)
@@ -33,7 +36,6 @@ btnAnterior.addEventListener('click',voltarImagem)
 todasImagens.forEach(function(imagem, numeroImagem) {
     imagem.addEventListener('click', function() {
         idImagemAtiva = numeroImagem;
-        textoAlternativo.innerText = imagem.alt
         selecionarImagem();
     });
 });
